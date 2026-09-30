@@ -1,4 +1,4 @@
-from django.shorcuts import render, redirect
+from django.shortcuts import render, redirect
 from .forms import BookForm
 
 def add_book(request):
