@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.shortcuts import render
 from .forms import BookForm
 
 def add_book(request):
@@ -6,7 +7,8 @@ def add_book(request):
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("Book saved")
-        else:
+            messages.success(request, "Book saved")
             form = BookForm()
-        return render(request, 'library/add_book.html', {'form': form})
+    else:
+        form = BookForm()
+    return render(request, 'library/add_book.html', {'form': form})
